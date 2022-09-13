@@ -41,18 +41,18 @@ func process(conn net.Conn) {
 		return
 	}
 	log.Println("auth success")
-	for {
-		b, err := reader.ReadByte()
-		if err != nil {
-			break
-		}
-		_, err = conn.Write([]byte{b})
-		if err != nil {
-			break
-		}
-		if err = connect(reader, conn); err != nil {
-			log.Printf("client %v connect failed:%v", conn.RemoteAddr(), err)
-		}
+	// for {
+	// b, err := reader.ReadByte()
+	// if err != nil {
+	// 	break
+	// }
+	// _, err = conn.Write([]byte{b})
+	// if err != nil {
+	// 	break
+	// }
+	// }
+	if err := connect(reader, conn); err != nil {
+		log.Printf("client %v connect failed:%v", conn.RemoteAddr(), err)
 	}
 }
 
